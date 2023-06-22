@@ -7,6 +7,15 @@
   <title>Student Result</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;700&family=Berkshire+Swash&family=Hind+Siliguri:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-family: 'Hind Siliguri', sans-serif;
+
+    }
+
+
     .container {
       padding: 2rem;
     }
@@ -32,9 +41,14 @@
       margin-top: 1.5rem;
     }
 
+  
     .dark-mode .container {
       background-color: #1f2937;
       color: rgb(47, 219, 245);
+    }
+
+    .dark-mode body {
+      background-color: #1f2937;
     }
 
     .dark-mode .result-card {
@@ -78,7 +92,7 @@
 
 <body>
   <div class="container mx-auto">
-    <h1 class="text-2xl font-bold text-center mb-4">Student Result</h1>
+    <h1 class="text-2xl font-bold text-center mb-4">Assignment Marks</h1>
 
     <!-- Dark/Light Mode Toggle -->
     <div class="text-right mb-4">
@@ -93,7 +107,7 @@
     </div>
 
     <!-- Fetch and display student result dynamically -->
-    <div id="result-container"></div>
+    <div id="result-container" class=""></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -133,7 +147,7 @@
 
         const assignmentResult = document.createElement("p");
         assignmentResult.innerHTML = `
-          <span class="font-bold">Assignment ${assignmentNo}:</span> ${assignment.marks} marks
+          <span class="font-bold">Assignment ${assignmentNo}:</span> ${assignment.marks} marks out of 60
           <span class="ml-4 font-bold">Percentage:</span> ${assignmentPercentage}%
         `;
         assignmentResults.appendChild(assignmentResult);
@@ -150,7 +164,7 @@
 
         const taskResult = document.createElement("p");
         taskResult.innerHTML = `
-          <span class="font-bold">Daily Task ${taskNo}:</span> ${task.marks} marks
+          <span class="font-bold">Daily Task ${taskNo}:</span> ${task.marks} marks out of 20
           <span class="ml-4 font-bold">Percentage:</span> ${taskPercentage}%
         `;
         dailyTaskResults.appendChild(taskResult);

@@ -4,41 +4,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Results</title>
+  <title>Web Design Student Results</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;700&family=Berkshire+Swash&family=Hind+Siliguri:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap');
+
     body {
       background-color: #1f2937;
       color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .student-panel{
+      font-family: 'Hind Siliguri', sans-serif;
     }
   </style>
 </head>
 
 <body>
   <div class="container mx-auto px-4 py-8 text-black">
-    <h1 class="text-2xl font-bold text-green-500 m-3">Student Results</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <h1 class="text-2xl font-bold text-blue-400 mt-3 text-center">Web Design Mastery Course-2023</h1>
+    <h1 class="text-2xl font-bold text-white mb-1 text-center">Assignment- Result</h1>
+    <div class="m-4 text-center">
+      <h1 class="text-2xl font-bold text-yellow-500">Learn with Mustafa Rahman</h1>
+      <h2 class="text-xl font-bold text-gray-400">web and software developer</h2>
+    </div>
+    <h1 class="text-2xl font-bold text-pink-600 m-4">Talented Student List:</h1>
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 student-panel ">
+
       <!-- Loop through each student -->
       <div class="bg-white rounded-lg shadow p-4">
-        <img src="https://learnwithmustafa.netlify.app/static/media/mustafa2.35a7cef0833484f6fa4b.jpeg" alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
-        <h2 class="text-xl font-bold m-2">Mustafa Rahman</h2>
-        <a href="result.html?student=Mustafa Rahman"
+        <img src="./img-students/sohrab.jpg"
+          alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
+        <h2 class="text-xl font-bold m-2">মোঃ সোহরাব হোসেন</h2>
+        <a href="result.html?student=মোঃ সোহরাব হোসেন"
           class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600">See Result</a>
       </div>
 
       <div class="bg-white rounded-lg shadow p-4">
-        <img src="https://learnwithmustafa.netlify.app/static/media/mustafa2.35a7cef0833484f6fa4b.jpeg" alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
-        <h2 class="text-xl font-bold m-2">Sahabuddin</h2>
-        <a href="result.html?student=Sahabuddin"
+        <img src="./img-students/sahabuddin.jpg"
+          alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
+        <h2 class="text-xl font-bold m-2">মোঃ সাহাবুদ্দিন</h2>
+        <a href="result.html?student=মোঃ সাহাবুদ্দিন"
           class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600">See Result</a>
       </div>
 
       <div class="bg-white rounded-lg shadow p-4">
-        <img src="https://learnwithmustafa.netlify.app/static/media/mustafa2.35a7cef0833484f6fa4b.jpeg" alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
-        <h2 class="text-xl font-bold m-2">Sohrab Hossen</h2>
-        <a href="result.html?student=Sohrab Hossen"
+        <img src="./img-students/jannat.png"
+          alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
+        <h2 class="text-xl font-bold m-2">জান্নাতুল আক্তার প্রমি</h2>
+        <a href="result.html?student=জান্নাতুল আক্তার প্রমি"
           class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600">See Result</a>
       </div>
+
+      <div class="bg-white rounded-lg shadow p-4">
+        <img src="https://learnwithmustafa.netlify.app/static/media/mustafa2.35a7cef0833484f6fa4b.jpeg"
+          alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
+        <h2 class="text-xl font-bold m-2">মোঃ রোহান উদ্দিন</h2>
+        <a href="result.html?student=মোঃ রোহান উদ্দিন"
+          class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600">See Result</a>
+      </div>
+
+      
+      <div class="bg-white rounded-lg shadow p-4">
+        <img src="./img-students/sayem.jpg"
+          alt="Student Image" class="w-32 h-32 mx-auto mb-4 rounded-full">
+        <h2 class="text-xl font-bold m-2">মোঃ আরাফাত হোসাইন সায়েম</h2>
+        <a href="result.html?student=মোঃ আরাফাত হোসাইন সায়েম"
+          class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600">See Result</a>
+      </div>
+
+
+      <div class="bg-white rounded-lg shadow p-4">
+        <img src="./img-students/solayman.png" alt="Student Image"
+          class="w-32 h-32 mx-auto mb-4 rounded-full">
+        <h2 class="text-xl font-bold m-2">মোঃ সোলায়মান</h2>
+        <a href="result.html?student=মোঃ সোলায়মান"
+          class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600">See Result</a>
+      </div>
+
 
       <!-- Add more student cards here -->
     </div>
