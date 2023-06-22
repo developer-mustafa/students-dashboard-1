@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Result</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <style>
+    .container {
+      padding: 2rem;
+    }
+
+    .result-card {
+      border-radius: 8px;
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .result-card h2,
+    .result-card h3 {
+      color: #111827;
+      margin: 7px;
+    }
+
+    .result-card p {
+      color: #e3e2e2;
+      font-size: 1.2rem;
+    }
+
+    .result-chart {
+      margin-top: 1.5rem;
+    }
+
+    .dark-mode .container {
+      background-color: #1f2937;
+      color: rgb(47, 219, 245);
+    }
+
+    .dark-mode .result-card {
+      background-color: #4b5563;
+    }
+
+    .dark-mode .result-card p {
+      color: #f8b628;
+    }
+
+    /* Improved typography and responsiveness */
+    @media (min-width: 640px) {
+      .container {
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+
+      }
+    }
+
+    /* Dark mode toggle styles */
+    #darkModeToggle {
+      background-color: transparent;
+      border: none;
+    }
+
+    #darkModeToggle:focus {
+      outline: none;
+    }
+
+    #darkModeToggle .icon {
+      fill: #6B7280;
+      transition: fill 0.2s ease;
+    }
+
+    #darkModeToggle.dark-mode .icon {
+      fill: #F3F4F6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mx-auto">
+    <h1 class="text-2xl font-bold text-center mb-4">Student Result</h1>
+
+    <!-- Dark/Light Mode Toggle -->
+    <div class="text-right mb-4">
+      <button id="darkModeToggle" class="focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 icon" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18a6 6 0 100-12 6 6 0 000 12z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Fetch and display student result dynamically -->
+    <div id="result-container"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="resultData.js"></script>
+  <script>
+    // Function to calculate the average percentage
+    function calculateAveragePercentage(marksArray) {
+      if (marksArray.length === 0) return 0;
+
+      const totalMarks = marksArray.reduce((total, mark) => total + mark.marks, 0);
+      const maxMarks = marksArray.length * 60;
+      const averagePercentage = (totalMarks / maxMarks) * 100;
+
+      return averagePercentage.toFixed(2);
+    }
+
+    // Function to display the student result
+    function displayStudentResult(student) {
+      const resultContainer = document.getElementById("result-container");
+      resultContainer.innerHTML = ""; // Clear the container before appending new content
+
+      // Student name and image
+      const studentHeader = document.createElement("div");
+      studentHeader.classList.add("text-center");
+      studentHeader.innerHTML = `
+        <img src="${student.image}" alt="Student Image" class="w-48 h-48 mx-auto mb-2 rounded-full">
+        <h2 class="text-xl font-bold m-2">${student.name}</h2>
+      `;
+      resultContainer.appendChild(studentHeader);
+
+      // Assignment Results
+      const assignmentResults = document.createElement("div");
+      assignmentResults.classList.add("result-card", "bg-green-700");
+      student.assignments.forEach((assignment, index) => {
+        const assignmentNo = index + 1;
+        const assignmentPercentage = ((assignment.marks / 60) * 100).toFixed(2);
+
+        const assignmentResult = document.createElement("p");
+        assignmentResult.innerHTML = `
+          <span class="font-bold">Assignment ${assignmentNo}:</span> ${assignment.marks} marks
+          <span class="ml-4 font-bold">Percentage:</span> ${assignmentPercentage}%
+        `;
+        assignmentResults.appendChild(assignmentResult);
+      });
+
+      resultContainer.appendChild(assignmentResults);
+
+      // Daily Task Results
+      const dailyTaskResults = document.createElement("div");
+      dailyTaskResults.classList.add("result-card", "bg-blue-700");
+      student.dailyTasks.forEach((task, index) => {
+        const taskNo = index + 1;
+        const taskPercentage = ((task.marks / 20) * 100).toFixed(2);
+
+        const taskResult = document.createElement("p");
+        taskResult.innerHTML = `
+          <span class="font-bold">Daily Task ${taskNo}:</span> ${task.marks} marks
+          <span class="ml-4 font-bold">Percentage:</span> ${taskPercentage}%
+        `;
+        dailyTaskResults.appendChild(taskResult);
+      });
+
+      resultContainer.appendChild(dailyTaskResults);
+
+      // Total Assignment Progress
+      const assignmentProgress = document.createElement("p");
+      const averagePercentage = calculateAveragePercentage([...student.assignments, ...student.dailyTasks]);
+      assignmentProgress.innerHTML = `
+        <span class="font-bold">Total Progress:</span> ${averagePercentage}%
+      `;
+      resultContainer.appendChild(assignmentProgress);
+
+      // Project Name
+      const projectName = document.createElement("p");
+      projectName.classList.add("font-bold");
+      projectName.textContent = "Web design Mastery Course";
+      resultContainer.appendChild(projectName);
+
+      // Responsive Pie Chart
+      const pieChartCanvas = document.createElement("canvas");
+      pieChartCanvas.id = "pieChart";
+      pieChartCanvas.classList.add("result-chart");
+      resultContainer.appendChild(pieChartCanvas);
+
+      // Responsive Bar Chart
+      const barChartCanvas = document.createElement("canvas");
+      barChartCanvas.id = "barChart";
+      barChartCanvas.classList.add("result-chart");
+      resultContainer.appendChild(barChartCanvas);
+
+      // Render the pie chart and bar chart
+      const pieChartCtx = pieChartCanvas.getContext("2d");
+      const barChartCtx = barChartCanvas.getContext("2d");
+
+      const pieChartData = student.assignments.map((assignment) => assignment.marks);
+      const barChartData = student.dailyTasks.map((task) => task.marks);
+
+      new Chart(pieChartCtx, {
+        type: "pie",
+        data: {
+          labels: student.assignments.map((_, index) => `Assignment ${index + 1}`),
+          datasets: [
+            {
+              data: pieChartData,
+              backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#4BC0C0",
+                "#9966FF",
+                "#FF9F40",
+                "#2C3E50",
+                "#F7464A",
+                "#46BFBD",
+                "#FDB45C",
+                "#949FB1",
+                "#4D5360",
+              ],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+
+      new Chart(barChartCtx, {
+        type: "bar",
+        data: {
+          labels: student.dailyTasks.map((_, index) => `Daily Task ${index + 1}`),
+          datasets: [
+            {
+              label: "Marks",
+              data: barChartData,
+              backgroundColor: "#36A2EB",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 20,
+            },
+          },
+        },
+      });
+    }
+
+    // Toggle Dark/Light Mode
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const sunIcon = document.getElementById("sunIcon");
+    const moonIcon = document.getElementById("moonIcon");
+    const container = document.querySelector("body");
+
+    darkModeToggle.addEventListener("click", () => {
+      container.classList.toggle("dark-mode");
+      sunIcon.classList.toggle("hidden");
+      moonIcon.classList.toggle("hidden");
+    });
+
+    // Retrieve the student data from resultData.js and display the result
+    const studentName = new URLSearchParams(window.location.search).get("student");
+    const student = resultData.students.find((s) => s.name === studentName);
+    if (student) {
+      displayStudentResult(student);
+    }
+  </script>
+
+  <script src="./resultData.js"></script>
+</body>
+
+</html>

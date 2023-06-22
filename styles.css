@@ -1,0 +1,19 @@
+/* styles.css */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.chart-container {
+  margin-bottom: 20px;
+}
