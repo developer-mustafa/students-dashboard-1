@@ -30,7 +30,7 @@ var resultData = {
     {
       name: "মোঃ রোহান উদ্দিন",
       image:
-        "https://learnwithmustafa.netlify.app/static/media/mustafa2.35a7cef0833484f6fa4b.jpeg",
+        "./img-students/rohan.jpg",
       assignments: [
         { name: "Assignment 1", marks: 60 },
 
