@@ -12,18 +12,22 @@
     body {
       font-family: 'Poppins', sans-serif;
       font-family: 'Hind Siliguri', sans-serif;
+      background-color: #2f3d51;
 
     }
 
 
     .container {
       padding: 2rem;
+      background-color: #fff;
+
     }
 
     .result-card {
       border-radius: 8px;
       padding: 1.8rem;
       margin-bottom: 1.5rem;
+
     }
 
     .result-card h2,
@@ -41,15 +45,13 @@
       margin-top: 1.5rem;
     }
 
-  
+
     .dark-mode .container {
       background-color: #1f2937;
       color: rgb(47, 219, 245);
     }
 
-    .dark-mode body {
-      background-color: #1f2937;
-    }
+
 
     .dark-mode .result-card {
       background-color: #4b5563;
@@ -133,7 +135,7 @@
       const studentHeader = document.createElement("div");
       studentHeader.classList.add("text-center");
       studentHeader.innerHTML = `
-        <img src="${student.image}" alt="Student Image" class="w-48 h-48 mx-auto mb-2 rounded-full">
+        <img src="${student.image}" alt="Student Image" class="w-48 h-48 mx-auto mb-4 rounded-full ring-green-400 ring-4">
         <h2 class="text-xl font-bold m-2">${student.name}</h2>
       `;
       resultContainer.appendChild(studentHeader);
@@ -147,8 +149,29 @@
 
         const assignmentResult = document.createElement("p");
         assignmentResult.innerHTML = `
-          <span class="font-bold">Assignment ${assignmentNo}:</span> ${assignment.marks} marks out of 60
-          <span class="ml-4 font-bold">Percentage:</span> ${assignmentPercentage}%
+            <table class="w-full font-bold">
+            <tr>
+              <td>Assignment No:</td>
+              <td class="text-yellow-300">${assignmentNo}</td>
+            </tr>
+
+            <tr>
+              <td>Assignment Name:</td>
+              <td class="text-yellow-300">${student.projectName}</td>
+            </tr>
+
+            <tr>
+              <td>Marks:</td>
+              <td class="text-yellow-300">${assignment.marks} out of 60</td>
+            </tr>
+
+            <tr>
+              <td>Percentage:</th>
+              <td class="text-yellow-300">${assignmentPercentage}%</td>
+            </tr>
+            
+          </table>
+
         `;
         assignmentResults.appendChild(assignmentResult);
       });
@@ -157,15 +180,30 @@
 
       // Daily Task Results
       const dailyTaskResults = document.createElement("div");
-      dailyTaskResults.classList.add("result-card", "bg-blue-700");
+      dailyTaskResults.classList.add("result-card", "bg-pink-700");
       student.dailyTasks.forEach((task, index) => {
         const taskNo = index + 1;
         const taskPercentage = ((task.marks / 20) * 100).toFixed(2);
 
         const taskResult = document.createElement("p");
         taskResult.innerHTML = `
-          <span class="font-bold">Daily Task ${taskNo}:</span> ${task.marks} marks out of 20
-          <span class="ml-4 font-bold">Percentage:</span> ${taskPercentage}%
+          <table class="w-full font-bold">
+            <tr>
+              <td>Task No.</td>
+              <td class=" font-bold">${taskNo}</td>
+            </tr>
+
+            <tr> 
+                <td>Marks</td>
+                <td class="font-bold">${task.marks} out of 20</td>
+            </tr>
+            
+            <tr> 
+              <td>Percentage</td>
+              <td class=" font-bold">${taskPercentage}%</td>
+            </tr>
+          </table>
+
         `;
         dailyTaskResults.appendChild(taskResult);
       });
@@ -176,13 +214,23 @@
       const assignmentProgress = document.createElement("p");
       const averagePercentage = calculateAveragePercentage([...student.assignments, ...student.dailyTasks]);
       assignmentProgress.innerHTML = `
-        <span class="font-bold">Total Progress:</span> ${averagePercentage}%
+     <div class="bg-green-700 w-full  rounded-2xl p-2 text-white">
+        <tr>
+          <span class="ml-10">Total Progress</span>
+          <span class="ml-10">${averagePercentage}%</span>
+        </tr>
+
+     </div>
+
       `;
       resultContainer.appendChild(assignmentProgress);
 
       // Project Name
       const projectName = document.createElement("p");
       projectName.classList.add("font-bold");
+      projectName.classList.add("text-center");
+      projectName.classList.add("text-2xl");
+      projectName.classList.add("m-4");
       projectName.textContent = "Web design Mastery Course";
       resultContainer.appendChild(projectName);
 

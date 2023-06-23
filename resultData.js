@@ -2,6 +2,7 @@ var resultData = {
   students: [
     {
       name: "মোঃ সোহরাব হোসেন",
+      projectName: "Text formatting web page",
       image: "./img-students/sohrab.jpg",
       assignments: [
         { name: "Assignment 1", marks: 60 },
@@ -16,6 +17,7 @@ var resultData = {
     },
     {
       name: "মোঃ সাহাবুদ্দিন",
+      projectName:  "Text formatting web page",
       image: "./img-students/sahabuddin.jpg",
       assignments: [
         { name: "Assignment 1", marks: 60 },
@@ -29,8 +31,8 @@ var resultData = {
     },
     {
       name: "মোঃ রোহান উদ্দিন",
-      image:
-        "./img-students/rohan.jpg",
+      projectName:  "Text formatting web page",
+      image: "./img-students/rohan.jpg",
       assignments: [
         { name: "Assignment 1", marks: 60 },
 
@@ -43,7 +45,8 @@ var resultData = {
       ],
     },
     {
-      name: "জান্নাতুল আক্তার প্রমি",
+      name: "মিফতাহুল জান্নাত প্রমি",
+      projectName:  "Text formatting web page",
       image: "./img-students/jannat.png",
       assignments: [
         { name: "Assignment 1", marks: 60 },
@@ -59,6 +62,7 @@ var resultData = {
 
     {
       name: "মোঃ আরাফাত হোসাইন সায়েম",
+      projectName:  "Text formatting web page",
       image: "./img-students/sayem.jpg",
       assignments: [
         { name: "Assignment 1", marks: 60 },
@@ -73,6 +77,7 @@ var resultData = {
     },
     {
       name: "মোঃ সোলায়মান",
+      projectName:  "Text formatting web page",
       image: "./img-students/solayman.png",
       assignments: [
         { name: "Assignment 1", marks: 60 },
